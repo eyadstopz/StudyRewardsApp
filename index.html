@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Rewards App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1><i class="fas fa-graduation-cap"></i> Study Rewards</h1>
+      <div class="coin-balance">
+        <span id="coinBalance">0</span>
+        <span class="coin-icon"><i class="fas fa-coins"></i></span>
+        <button id="editCoinsBtn" class="edit-coins-btn">
+          <i class="fas fa-edit"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Tab Navigation -->
+    <div class="tab-navigation">
+      <button class="tab-button active" data-tab="study-timer">Study Timer</button>
+      <button class="tab-button" data-tab="reward-shop">Reward Shop</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content-container">
+      <!-- Study Timer Tab -->
+      <div class="tab-content active" id="study-timer-tab">
+        <div class="timer-container">
+          <div class="timer-display-container">
+            <div class="timer-circle-container">
+              <div class="timer-progress">
+                <svg class="timer-circle" viewBox="0 0 100 100">
+                  <circle class="timer-circle-bg" cx="50" cy="50" r="45"></circle>
+                  <circle id="timerProgress" class="timer-circle-progress" cx="50" cy="50" r="45"></circle>
+                </svg>
+                <div class="timer-time">
+                  <span id="timerDisplay">00:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="duration-selector">
+            <h3>Select Duration:</h3>
+            <div class="duration-buttons">
+              <button class="duration-btn" data-duration="15">15 min</button>
+              <button class="duration-btn" data-duration="25">25 min</button>
+              <button class="duration-btn" data-duration="30">30 min</button>
+              <button class="duration-btn" data-duration="45">45 min</button>
+              <button class="duration-btn" data-duration="60">60 min</button>
+            </div>
+          </div>
+
+          <div class="timer-controls">
+            <button id="startTimerBtn" class="start-timer-btn">Start Timer</button>
+            <button id="pauseTimerBtn" class="pause-timer-btn" disabled>Pause</button>
+            <button id="resetTimerBtn" class="reset-timer-btn" disabled>Reset</button>
+          </div>
+
+          <div class="study-progress">
+            <h3>Today's Progress:</h3>
+            <div class="progress-container">
+              <div id="studyProgressBar" class="progress-bar" style="width: 0%"></div>
+            </div>
+            <div class="progress-stats">
+              <span id="studyTimeToday">0</span> minutes studied
+              <span id="studyGoalMessage" class="goal-message"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bonus-tasks-container">
+          <h3>Bonus Tasks (+5 coins each)</h3>
+          <div id="bonusTasksList" class="bonus-tasks-list">
+            <!-- Bonus tasks will be inserted here -->
+          </div>
+          <div class="add-task-container">
+            <input type="text" id="newTaskInput" placeholder="Add your own task...">
+            <button id="addTaskBtn"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reward Shop Tab -->
+      <div class="tab-content" id="reward-shop-tab">
+        <div class="shop-container">
+          <h2>Reward Shop</h2>
+          <p>Spend your coins on fun activities!</p>
+
+          <div id="shopItems" class="shop-items">
+            <!-- Shop items will be inserted here -->
+          </div>
+        </div>
+
+        <div class="activities-container">
+          <h2>Your Activities</h2>
+          <p id="noActivitiesMessage" class="no-activities-message">No active timers. Purchase activities from the shop.</p>
+          <div id="activeTimersList" class="active-timers-list">
+            <!-- Activity timers will be inserted here -->
+          </div>
+        </div>
+
+        <div class="history-container">
+          <h3>Recent Activity</h3>
+          <p id="noHistoryMessage" class="no-history-message">No activity history yet.</p>
+          <div id="historyList" class="history-list">
+            <!-- History items will be inserted here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Purchase Modal -->
+    <div id="purchaseModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Confirm Purchase</h2>
+        <p id="purchaseMessage"></p>
+        <p>This will cost <span id="purchaseCost"></span> coins.</p>
+        <div class="modal-buttons">
+          <button id="confirmPurchaseBtn" class="confirm-btn">Confirm</button>
+          <button class="cancel-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Coins Modal -->
+    <div id="editCoinsModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Edit Coin Balance</h2>
+        <p>Enter your new coin balance:</p>
+        <input type="number" id="newCoinsInput" min="0" value="0">
+        <div class="modal-buttons">
+          <button id="saveCoinsBtn" class="confirm-btn">Save</button>
+          <button class="cancel-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification" class="notification">
+      <div id="notificationContent" class="notification-content">
+        This is a notification message
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
